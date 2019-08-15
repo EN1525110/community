@@ -1,0 +1,63 @@
+server:
+    port: 8887
+    servlet:
+        session:
+            timeout=15552000:
+
+#\u914D\u7F6E\u4F7F\u7528github\u7B2C\u4E09\u65B9\u767B\u5F55\u6388\u6743
+github:
+    clinet.id: d14fa03588844f800042
+    client.secret: b9c78e8f3309af2e1a15e08bb368ecf191998818
+    redirect.uri: http://localhost:8887/callback
+
+#\u914D\u7F6E\u6570\u636E\u5E93\u8FDE\u63A5\u6C60
+#spring.datasource.username=sa
+#spring.datasource.driver-class-name=org.h2.Driver
+#spring.datasource.url=jdbc:h2:~/communitydb
+#spring.datasource.password=123
+
+spring:
+    datasource:
+        #   \u6570\u636E\u6E90\u57FA\u672C\u914D\u7F6E
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC
+        type: com.alibaba.druid.pool.DruidDataSource
+        #   \u6570\u636E\u6E90\u5176\u4ED6\u914D\u7F6E
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+
+mybatis:
+    # \u6307\u5B9A\u5168\u5C40\u914D\u7F6E\u6587\u4EF6\u4F4D\u7F6E
+    config-location: classpath:mybatis/mybatis-config.xml
+    # \u6307\u5B9Asql\u6620\u5C04\u6587\u4EF6\u4F4D\u7F6E
+    mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+
+#云上传图片
+ucloud:
+    ufile:
+        public-key: TOKEN_763a952e-a588-498b-bc55-9a200bf96a07git
+        private-key: b7650ee1-67ad-4c96-afa0-6116a2d0f361
+        bucket-name: xuduxin
+        region: cn-gd  #地域信息
+        suffix: ufileos.com
+        expires: 315360000
+
+#日志配置
+logging:
+    file: logs/community.log
+    logging.level.root: info
+    logging.file.max-history: 15
+    logging.file.max-size: 100MB
